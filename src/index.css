@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+:root {
+  --purple: hsl(257, 27%, 26%);
+  --blue: hsl(180, 66%, 49%);
+  --Gray400: hsl(0, 0%, 75%);
+  --Gray500: hsl(257, 7%, 63%);
+  --Gray900: hsl(255, 11%, 22%);
+  --blue1: hsl(180, 61%, 66%);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
