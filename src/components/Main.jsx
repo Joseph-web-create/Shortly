@@ -16,7 +16,7 @@ const Main = () => {
             links are performing.
           </p>
           <div className="p-3">
-            <button className="bg-[var(--blue)] text-white px-5 py-2 rounded-full  hover:bg-[var(--blue1)]">
+            <button className="bg-[var(--blue)] text-white px-5 py-4 rounded-full w-[200px]  hover:bg-[var(--blue1)]">
               <a href="#">Get Started</a>
             </button>
           </div>
