@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@plugin "daisyui" {
+  themes: light --default;
+}
+
 :root {
   --purple: hsl(257, 27%, 26%);
   --blue: hsl(180, 66%, 49%);

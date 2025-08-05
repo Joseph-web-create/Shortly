@@ -6,6 +6,7 @@ const ShortenUrl = () => {
   const [myLinks, setMylinks] = useState([]);
   const [whatAmloopingover, setLooping] = useState([]);
   const [copiedIndex, setCopiedIndex] = useState(null);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("shortenedLinks"));
@@ -14,23 +15,30 @@ const ShortenUrl = () => {
   }, [myLinks]);
 
   const shortenLink = async () => {
+    if (loader) return;
+    setLoader(true);
     if (!link) {
       setError("Please add a link");
+      setLoader(false);
       return;
     }
     try {
-      const response = await fetch("http://localhost:5000/shorten", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ link }),
-      });
+      const response = await fetch(
+        "https://backend-v817.onrender.com/shorten",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ link }),
+        }
+      );
 
       const data = await response.json();
       if (!response.ok) {
         const errorMessage = data.error || "Something went wrong";
         setError(errorMessage);
+        setLoader(false);
         return;
       }
       const savedLinks = JSON.parse(
@@ -45,6 +53,8 @@ const ShortenUrl = () => {
     } catch (error) {
       console.error("Fetch failed:", error.message);
       setError("Network error. Please try again.");
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -69,11 +79,16 @@ const ShortenUrl = () => {
             value={link}
             onChange={(e) => setLink(e.target.value)}
           />
+
           <button
             className="bg-[var(--blue)] text-white px-6 py-3 rounded-md hover:bg-[var(--blue1)] transition cursor-pointer"
             onClick={shortenLink}
           >
-            Shorten it!
+            {loader ? (
+              <span className="loading loading-dots loading-md"></span>
+            ) : (
+              "Shorten it!"
+            )}
           </button>
         </div>
         <div className="lg:px-10">
@@ -91,6 +106,7 @@ const ShortenUrl = () => {
           <p className="text-[var(--purple)] text-[18px] font-semibold  truncate">
             {val.old}
           </p>
+
           <hr className="w-full border-t-2 border-[var(--Gray5001)] my-2 lg:hidden" />
 
           <div className="flex flex-col gap-2 lg:flex-row lg:gap-4 lg:items-center">
