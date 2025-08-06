@@ -1,11 +1,12 @@
+import AdvanceSection from "./advanceSection";
 import ShortenUrl from "./ShortenUrl";
 
 const ShortenParent = () => {
   return (
-    <div className=" bg-[var(--Gray5001)] text-[var(--purple)]">
+    <div className=" bg-[var(--Gray5001)] text-[var(--purple)] pb-10 ">
       <div className="max-w-[1440px] mx-auto">
         <ShortenUrl />
-        <div className="text-center px-3 py-6 lg:w-[40%] mx-auto mt-10">
+        <div className="text-center px-3 py-6 lg:w-[40%] mx-auto ">
           <p className="text-[var(--purple)] text-4xl font-semibold">
             Advanced Statistics
           </p>
@@ -14,6 +15,7 @@ const ShortenParent = () => {
             statistics dashboard.
           </p>
         </div>
+        <AdvanceSection />
       </div>
     </div>
   );
