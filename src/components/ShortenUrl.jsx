@@ -61,7 +61,11 @@ const ShortenUrl = () => {
   const handleCopy = (text, index) => {
     navigator.clipboard.writeText(text);
     setCopiedIndex(index);
-    // Hide "Copied!" after 2 seconds
+  };
+
+  const removeAllLinks = () => {
+    setLooping([]);
+    localStorage.clear();
   };
 
   return (
@@ -124,6 +128,14 @@ const ShortenUrl = () => {
           </div>
         </div>
       ))}
+      {whatAmloopingover?.length >= 10 && (
+        <button
+          className="bg-red-600 text-white p-4 mt-[-20px] rounded-md cursor-pointer"
+          onClick={removeAllLinks}
+        >
+          Delete ALL Links
+        </button>
+      )}
     </>
   );
 };

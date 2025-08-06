@@ -1,4 +1,5 @@
-import Heading from "./components/heading";
+import BoostSection from "./components/BoostSection";
+import Heading from "./components/Heading";
 import Main from "./components/Main";
 import ShortenParent from "./components/ShortenParent";
 
@@ -8,6 +9,7 @@ function App() {
       <Heading />
       <Main />
       <ShortenParent />
+      <BoostSection />
     </>
   );
 }
